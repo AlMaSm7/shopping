@@ -22,9 +22,11 @@ export default function List(){
 
     const getLocalStorage = () =>{
         let storage = localStorage.getItem("shoppingBag")
-        if(storage == null){
+        if(storage.length == 0){
             console.log("here")
             localStorage.setItem("shoppingBag", JSON.stringify([]))
+        }else{
+            setItems(JSON.parse(storage))
         }
     }
 
@@ -33,7 +35,9 @@ export default function List(){
         <div>
                 {
                     items.map((e) => {
-                        <Items name={e.item} checked={e.checked} time={e.timeStamp}/>
+                        return(
+                            <Items name={e.item} checked={e.checked} time={e.timeStamp} list={items}/>
+                        )
                     })
                 }
                 <input placeholder="Add new Item..." onChange={(e) => setnewItem(e.target.value)}/>
