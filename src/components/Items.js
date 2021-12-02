@@ -1,7 +1,15 @@
+import { useEffect } from "react"
+
 export default function Items(props){
 
+    useEffect(() => {
+        console.log(props)
+    }, [])
+
     return(
-        <p></p>
+        <div>
+            <p>{props.name}</p>
+        </div>
     )
     
 }

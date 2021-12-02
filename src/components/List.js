@@ -10,19 +10,21 @@ export default function List(){
 
     useEffect(() => {
         getLocalStorage()
-    }, [newItem])
+    },[])
+
+    useEffect(() => {
+        localStorage.setItem("shoppingBag", JSON.stringify(items))
+    }, [items])
 
     const safeItem = () =>{
-        console.log(Date.now)
-        localStorage.setItem("shoppingBag", JSON.stringify([...items, {timeStamp: Date.now, checked: false}]))
+        setItems([...items, {item: newItem, timeStamp: Date.now(), checked: false}])
     }
 
     const getLocalStorage = () =>{
         let storage = localStorage.getItem("shoppingBag")
         if(storage == null){
+            console.log("here")
             localStorage.setItem("shoppingBag", JSON.stringify([]))
-        }else{
-            setItems(JSON.parse(storage))
         }
     }
 
@@ -31,7 +33,7 @@ export default function List(){
         <div>
                 {
                     items.map((e) => {
-                        <Items />
+                        <Items name={e.item} checked={e.checked} time={e.timeStamp}/>
                     })
                 }
                 <input placeholder="Add new Item..." onChange={(e) => setnewItem(e.target.value)}/>
