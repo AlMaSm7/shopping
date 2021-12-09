@@ -9,6 +9,7 @@ export default function Items(props){
     useEffect(() => {
         localStorage.setItem('shoppingBag', JSON.stringify(items))
         props.getStorage()
+        console.log(props.timeStamp)
     }, [items])
 
     const updateCheckBox = () => {
@@ -30,7 +31,7 @@ export default function Items(props){
             <p>{props.time}</p>
             <p>for debug: {props.timeStamp}</p>
             <input type="checkbox" name ="itemhere" checked={ischecked} onChange={updateCheckBox}/>
-            <Delete timeStamp={time} items={items} storage={props.getStorage}/>
+            <Delete timeStamp={props.timeStamp} items={props.list} storage={props.getStorage}/>
         </div>
     )
 }

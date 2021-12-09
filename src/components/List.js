@@ -10,7 +10,7 @@ export default function List(){
 
     useEffect(() => {
         getLocalStorage()
-    },[])
+    }, [])
 
     useEffect(() => {
         console.log('CUMMER')
@@ -20,11 +20,11 @@ export default function List(){
 
     const safeItem = () =>{
         let d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
+        month =  (d.getMonth() + 1),
+        day =  d.getDate(),
         year = d.getFullYear()
         console.log('cum')
-        setItems([...items, {item: newItem, date: [year, month, day].join('-'), checked: false, timeStamp: Date.now()}])
+        setItems([...items, {item: newItem, date: [day, month, year].join('.'), checked: false, timeStamp: Date.now()}])
     }
 
     const getLocalStorage = () =>{
@@ -60,6 +60,5 @@ export default function List(){
                 <Col xs={1} md={4}></Col>
             </Row>
         </Container>
-        
     )
 }
