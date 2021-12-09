@@ -1,15 +1,12 @@
 import { BsFillTrashFill } from "react-icons/bs"
 import { useState, useEffect } from "react"
-
 export default function Delete(props){
     const [timeKey, setTimeKey] = useState(props.timeStamp)
     const [data, setData] = useState(props.items)
-
     useEffect(() => {
         props.storage()
         setTimeKey(props.timeStamp)
     }, [data])
-
     const deleteItem = () => {
         console.log(timeKey)
         //console.log(data)
@@ -21,10 +18,7 @@ export default function Delete(props){
     }
     return (
         <div>
-             <BsFillTrashFill onClick={deleteItem}/>
-             <p>{props.timeStamp}</p>
+             <BsFillTrashFill style={{color: '#ff0011'}} onClick={deleteItem}/>
         </div>
-       
     )
-
 }
